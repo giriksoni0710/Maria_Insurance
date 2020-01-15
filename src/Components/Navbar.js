@@ -17,8 +17,18 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+import ContactPage from '../Pages/ContactPage'
+import AboutPage from '../Pages/AboutPage'
+  
 
 import ContactInfo from '@material-ui/icons/ContactMail';
+import HomePage from '../Pages/HomePage';
 
 const drawerWidth = 240;
 
@@ -28,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: '#000gff',
+    backgroundColor: '#333',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -98,73 +108,36 @@ export default function MiniDrawer() {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Insurance
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-            <ListItem button key='Home'
-                onClick={{}}
-                >
-              <ListItemIcon>{ <HomeIcon /> }</ListItemIcon>
-              <ListItemText primary='Home' />
-            </ListItem>
-            <ListItem button key='About'>
-              <ListItemIcon>{ <InfoIcon /> }</ListItemIcon>
-              <ListItemText primary='About Us' />
-            </ListItem>
-          
-        </List>
-        <Divider />
-        <List>
-            <ListItem button key='Contact Us'>
-              <ListItemIcon>{ <ContactInfo />}</ListItemIcon>
-              <ListItemText primary='Contact Us' />
-            </ListItem>
-          
-        </List>
-      </Drawer>
-      
+    <div>
+      <div class="toplinefixed">
+      </div>
+    <div class="nav">
+  <input type="checkbox" id="nav-check"></input>
+  <div class="nav-header">
+    <div class="nav-title">
+      Insurance
     </div>
+  </div>
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+  <Router>
+  <div class="nav-links">
+    <Link to='/'>Home</Link>
+    <Link to='/about'>About</Link>
+    <Link to='/contact'>Contact</Link>
+  </div>
+  <Switch>
+              <Route exact path='/' component={HomePage}/>
+              <Route path='/contact' component={ContactPage} />
+              <Route path='/about' component={AboutPage} />
+          </Switch>
+  </Router>
+</div>
+</div>
   );
 }
