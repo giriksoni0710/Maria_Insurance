@@ -20,10 +20,6 @@ function App() {
 
     </MiniDrawer>
     
-    <Footer>
-
-    </Footer>
-
     </div>
    
   );

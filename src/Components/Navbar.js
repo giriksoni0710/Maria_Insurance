@@ -126,7 +126,8 @@ export default function MiniDrawer() {
     </label>
   </div>
   <Router>
-  <div class="nav-links">
+  <div class="nav-links" style={{
+    marginRight: '5rem'}}>
     <Link to='/'>Home</Link>
     <Link to='/about'>About</Link>
     <Link to='/contact'>Contact</Link>
